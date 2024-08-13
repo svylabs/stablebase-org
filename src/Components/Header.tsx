@@ -50,7 +50,8 @@ const Header: React.FC = () => {
 
     return (
         <header className="bg-white shadow-md sticky top-0 z-50">
-            <div className="max-w-7xl mx-auto px-4 flex items-center justify-between py-4">
+            {/* <div className="md:max-w-3xl lg:max-w-4xl xl:max-w-7xl mx-auto px-4 flex items-center justify-between py-4"> */}
+            <div className=" mx-auto px-4 md:px-8 lg:px-16 xl:px-32 flex items-center justify-between py-4">
                 <div className="flex items-center">
                     <img
                         src="https://via.placeholder.com/50"
