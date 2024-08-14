@@ -5,6 +5,8 @@ const Header: React.FC = () => {
     const [isValid, setIsValid] = useState(true);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [hoveredMenu, setHoveredMenu] = useState("");
+    const hideTimeoutRef = useRef<number | undefined>();
     const modalRef = useRef<HTMLDivElement>(null);
 
     const toggleMenu = () => {
@@ -17,14 +19,13 @@ const Header: React.FC = () => {
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
-        
+
         const emailRegex =
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         setIsValid(emailRegex.test(email));
-      };
+    };
 
     const handleSignUp = () => {
-        // console.log("Email submitted:", email);
         alert("Email submitted: " + email);
         setIsModalOpen(false);
     };
@@ -35,6 +36,17 @@ const Header: React.FC = () => {
         }
     };
 
+    const handleMouseEnterMenu = (menu: string) => {
+        clearTimeout(hideTimeoutRef.current);
+        setHoveredMenu(menu);
+    };
+
+    const handleMouseLeaveMenu = () => {
+        hideTimeoutRef.current = window.setTimeout(() => {
+            setHoveredMenu("");
+        }, 200); // Adjust delay as needed
+    };
+
     useEffect(() => {
         if (isModalOpen) {
             document.addEventListener('mousedown', handleClickOutside);
@@ -42,7 +54,6 @@ const Header: React.FC = () => {
             document.removeEventListener('mousedown', handleClickOutside);
         }
 
-        // Cleanup event listener on component unmount
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
@@ -50,7 +61,6 @@ const Header: React.FC = () => {
 
     return (
         <header className="bg-white shadow-md sticky top-0 z-50">
-            {/* <div className="md:max-w-3xl lg:max-w-4xl xl:max-w-7xl mx-auto px-4 flex items-center justify-between py-4"> */}
             <div className=" mx-auto px-4 md:px-8 lg:px-16 xl:px-32 flex items-center justify-between py-4">
                 <div className="flex items-center">
                     <img
@@ -80,23 +90,75 @@ const Header: React.FC = () => {
                             </a>
                             <span className="absolute left-0 bottom-[-2px] w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
                         </li>
-                        <li className="group relative">
-                            <a
-                                href="#frontends"
-                                className="text-gray-700 font-medium group-hover:text-orange-500 transition-colors duration-300"
+                        <li
+                            className="group relative"
+                            onMouseEnter={() => handleMouseEnterMenu("frontends")}
+                            onMouseLeave={handleMouseLeaveMenu}
+                        >
+                            <span
+                                className="text-gray-700 font-medium cursor-default group-hover:text-orange-500 transition-colors duration-300"
                             >
                                 Frontends
-                            </a>
+                            </span>
                             <span className="absolute left-0 bottom-[-2px] w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
+                            {hoveredMenu === "frontends" && (
+                                <div
+                                    className="absolute left-0 mt-2 w-40 bg-white shadow-md rounded-lg border"
+                                    onMouseEnter={() => handleMouseEnterMenu("frontends")}
+                                    onMouseLeave={handleMouseLeaveMenu}
+                                >
+                                    <a
+                                        href="#use-liquidity"
+                                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                    >
+                                        Use Liquidity
+                                    </a>
+                                    <a
+                                        href="#run-frontend"
+                                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                    >
+                                        Run a Frontend
+                                    </a>
+                                </div>
+                            )}
                         </li>
-                        <li className="group relative">
-                            <a
-                                href="#more"
-                                className="text-gray-700 font-medium group-hover:text-orange-500 transition-colors duration-300"
+                        <li
+                            className="group relative"
+                            onMouseEnter={() => handleMouseEnterMenu("more")}
+                            onMouseLeave={handleMouseLeaveMenu}
+                        >
+                            <span
+                                className="text-gray-700 font-medium cursor-default group-hover:text-orange-500 transition-colors duration-300"
                             >
                                 More
-                            </a>
+                            </span>
                             <span className="absolute left-0 bottom-[-2px] w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
+                            {hoveredMenu === "more" && (
+                                <div
+                                    className="absolute left-0 mt-2 w-40 bg-white shadow-md rounded-lg border"
+                                    onMouseEnter={() => handleMouseEnterMenu("more")}
+                                    onMouseLeave={handleMouseLeaveMenu}
+                                >
+                                    <a
+                                        href="#blog"
+                                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                    >
+                                        Blog
+                                    </a>
+                                    <a
+                                        href="#analytics"
+                                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                    >
+                                        Analytics
+                                    </a>
+                                    <a
+                                        href="#about-us"
+                                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                    >
+                                        About Us
+                                    </a>
+                                </div>
+                            )}
                         </li>
                     </ul>
                 </nav>
@@ -152,15 +214,42 @@ const Header: React.FC = () => {
                 <nav className="flex flex-col gap-3 md:hidden bg-gray-50 shadow-md px-4 pb-4">
                     <a href="#docs" className="block  text-gray-600 hover:bg-gray-100">Docs</a>
                     <a href="#features" className="block  text-gray-600 hover:bg-gray-100">Features</a>
-                    <a href="#frontends" className="block  text-gray-600 hover:bg-gray-100">Frontends</a>
-                    <a href="#more" className="block  text-gray-600 hover:bg-gray-100">More</a>
                     <div>
-                    <button
-                        onClick={toggleModal}
-                        className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition duration-200"
-                    >
-                        Sign Up / Sign In
-                    </button>
+                        <button
+                            onClick={() => setHoveredMenu(hoveredMenu === "frontends" ? "" : "frontends")}
+                            className="block text-gray-600 hover:bg-gray-100 w-full text-left"
+                        >
+                            Frontends
+                        </button>
+                        {hoveredMenu === "frontends" && (
+                            <div className="ml-4 border rounded mt-1">
+                                <a href="#use-liquidity" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Use Liquidity</a>
+                                <a href="#run-frontend" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Run a Frontend</a>
+                            </div>
+                        )}
+                    </div>
+                    <div>
+                        <button
+                            onClick={() => setHoveredMenu(hoveredMenu === "more" ? "" : "more")}
+                            className="block text-gray-600 hover:bg-gray-100 w-full text-left"
+                        >
+                            More
+                        </button>
+                        {hoveredMenu === "more" && (
+                            <div className="ml-4 border rounded mt-1">
+                                <a href="#blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Blog</a>
+                                <a href="#analytics" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Analytics</a>
+                                <a href="#about-us" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">About Us</a>
+                            </div>
+                        )}
+                    </div>
+                    <div>
+                        <button
+                            onClick={toggleModal}
+                            className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition duration-200"
+                        >
+                            Sign Up / Sign In
+                        </button>
                     </div>
                 </nav>
             )}
