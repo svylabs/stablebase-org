@@ -57,30 +57,6 @@ const FAQ: React.FC = () => {
                     </div>
                 </div>
             ))}
-            <div className="flex justify-center gap-4 mt-8">
-                <button className="px-6 py-2 text-white rounded-lg shadow-mdtransition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 ">
-                    Borrow Now
-                </button>
-                <button
-                    className="text-slate-800 font-medium border hover:scale-105 py-2 px-4 rounded flex items-center"
-                >
-                    Learn More
-                    <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                    </svg>
-                </button>
-            </div>
         </div>
     );
 };
