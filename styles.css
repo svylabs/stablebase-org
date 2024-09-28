@@ -1,0 +1,152 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+}
+
+header {
+    padding: 20px;
+    color: #333;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header .menu {
+    display: inline-block;
+    float: right;
+}
+
+header .menu a.cta {
+    margin-left: 15px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+header .menu a.cta:hover {
+    background-color: #388E3C;
+}
+
+/* Carousel Container Styles */
+.carousel {
+    display: flex;
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+    padding: 40px;
+    text-align: center;
+    min-height: 300px;
+}
+
+.carousel-item h1 {
+    font-size: 36px;
+    color: #333;
+}
+
+.carousel-item p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 20px 0;
+}
+
+.carousel-indicators {
+    text-align: center;
+    padding: 20px;
+}
+
+.carousel-indicators .dot {
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-indicators .active {
+    background-color: #717171;
+}
+
+/* Collapsible Accordion Styles */
+#accordion {
+    display: none;
+}
+
+.accordion-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.accordion-item h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.accordion-item .content {
+    display: none;
+    padding: 15px 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    padding: 20px 0;
+    text-align: center;
+    color: #fff;
+}
+
+footer .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+footer .social-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff;
+}
+
+footer .social-links a:hover {
+    color: #ddd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #carousel-container {
+        display: none;
+    }
+
+    #accordion {
+        display: block;
+    }
+
+    .accordion-item.active .content {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) {
+    #accordion {
+        display: none;
+    }
+}

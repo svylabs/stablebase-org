@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stablebase Protocol</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Stablebase Protocol</div>
+            <div class="menu">
+                <a href="docs.html" class="cta">Docs</a>
+                <a href="getinvolved.html" class="cta">Get Involved</a>
+            </div>
+        </nav>
+    </header>
+
+    <div id="carousel-container">
+        <div id="carousel" class="carousel">
+            <section id="what" class="carousel-item">
+                <h1>WHAT</h1>
+                <p>Explanation of what the Stablebase Protocol is about. Include key features, principles, and the main purpose.</p>
+            </section>
+            <section id="why" class="carousel-item">
+                <h1>WHY</h1>
+                <p>Describe why the protocol exists. Outline the problem it solves and the value it provides to users and the ecosystem.</p>
+            </section>
+            <section id="how" class="carousel-item">
+                <h1>HOW</h1>
+                <p>Details on how the protocol works, key mechanisms, and a high-level technical explanation for non-technical users.</p>
+            </section>
+            <section id="who" class="carousel-item">
+                <h1>WHO</h1>
+                <p>Information on who is behind the protocol, contributors, and community. This can include links to team profiles or related partners.</p>
+            </section>
+            <section id="when" class="carousel-item">
+                <h1>WHEN</h1>
+                <p>Roadmap and timeline. Include key milestones and release phases.</p>
+            </section>
+        </div>
+        <div class="carousel-indicators">
+            <span class="dot active" onclick="showSlide(0)"></span>
+            <span class="dot" onclick="showSlide(1)"></span>
+            <span class="dot" onclick="showSlide(2)"></span>
+            <span class="dot" onclick="showSlide(3)"></span>
+            <span class="dot" onclick="showSlide(4)"></span>
+        </div>
+    </div>
+
+    <!-- Collapsible Cards for Mobile -->
+    <div id="accordion">
+        <section class="accordion-item" onclick="toggleAccordion(this)">
+            <h1>WHAT</h1>
+            <p class="content">Explanation of what the Stablebase Protocol is about. Include key features, principles, and the main purpose.</p>
+        </section>
+        <section class="accordion-item" onclick="toggleAccordion(this)">
+            <h1>WHY</h1>
+            <p class="content">Describe why the protocol exists. Outline the problem it solves and the value it provides to users and the ecosystem.</p>
+        </section>
+        <section class="accordion-item" onclick="toggleAccordion(this)">
+            <h1>HOW</h1>
+            <p class="content">Details on how the protocol works, key mechanisms, and a high-level technical explanation for non-technical users.</p>
+        </section>
+        <section class="accordion-item" onclick="toggleAccordion(this)">
+            <h1>WHO</h1>
+            <p class="content">Information on who is behind the protocol, contributors, and community. This can include links to team profiles or related partners.</p>
+        </section>
+        <section class="accordion-item" onclick="toggleAccordion(this)">
+            <h1>WHEN</h1>
+            <p class="content">Roadmap and timeline. Include key milestones and release phases.</p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://discord.com" target="_blank">Discord</a>
+                <a href="https://telegram.org" target="_blank">Telegram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
